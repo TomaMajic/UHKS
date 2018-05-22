@@ -3,6 +3,8 @@ class User < ApplicationRecord
 	     :recoverable, :rememberable, :trackable, :validatable
 
 	has_many :absences
-	has_one :licence
-	has_one :city
+	belongs_to :licence
+	belongs_to :city
+	has_one :user_game
+	has_many :games, through: :user_games
 end

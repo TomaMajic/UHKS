@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180522172024) do
+ActiveRecord::Schema.define(version: 20180522175650) do
 
   create_table "absences", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "user_id"
@@ -29,8 +29,23 @@ ActiveRecord::Schema.define(version: 20180522172024) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "city_id"
+    t.bigint "minimal_licence_id"
+    t.bigint "home_team_id"
+    t.bigint "away_team_id"
+    t.datetime "event_time"
+    t.integer "num_of_refs"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["away_team_id"], name: "index_games_on_away_team_id"
+    t.index ["city_id"], name: "index_games_on_city_id"
+    t.index ["home_team_id"], name: "index_games_on_home_team_id"
+    t.index ["minimal_licence_id"], name: "index_games_on_minimal_licence_id"
+  end
+
   create_table "licences", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "type"
+    t.string "name"
     t.integer "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +58,15 @@ ActiveRecord::Schema.define(version: 20180522172024) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_teams_on_city_id"
+  end
+
+  create_table "user_games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_user_games_on_game_id"
+    t.index ["user_id"], name: "index_user_games_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -70,7 +94,13 @@ ActiveRecord::Schema.define(version: 20180522172024) do
   end
 
   add_foreign_key "absences", "users"
+  add_foreign_key "games", "cities"
+  add_foreign_key "games", "licences", column: "minimal_licence_id"
+  add_foreign_key "games", "teams", column: "away_team_id"
+  add_foreign_key "games", "teams", column: "home_team_id"
   add_foreign_key "teams", "cities"
+  add_foreign_key "user_games", "games"
+  add_foreign_key "user_games", "users"
   add_foreign_key "users", "cities"
   add_foreign_key "users", "licences"
 end

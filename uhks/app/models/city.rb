@@ -1,4 +1,5 @@
 class City < ApplicationRecord
-	belongs_to :users
 	has_many :teams
+	has_many :games
+	has_many :users
 end

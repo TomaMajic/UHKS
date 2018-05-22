@@ -1,3 +1,4 @@
 class Licence < ApplicationRecord
-	belongs_to :users
+	has_many :users
+	has_many :games
 end
