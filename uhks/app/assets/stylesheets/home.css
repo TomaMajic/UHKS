@@ -1,0 +1,15 @@
+.upcoming-game { 
+	border-style: groove;
+	border-width: 5px;
+	border-radius: 20px;
+	width: 50%;
+}
+
+.upcoming-game:hover {
+	background-color: yellow;
+	cursor: pointer;
+}
+
+.upcoming-game:active {
+	border-style: inset;
+}

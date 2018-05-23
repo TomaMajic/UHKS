@@ -2,10 +2,13 @@
 
 <h2> Upcoming games: </h2>
 
-<% @user_games.each do |user_game| %>
-	<div> 
-		<p><%= user_game.game.home_team.name %> VS <%= user_game.game.away_team.name %></p>
-		<p><%= user_game.game.event_time %></p> 
+<% @games.each do |game| %>
+	<% refs_remaining = game.num_of_refs - game.users.count  %>
+
+	<div class="upcoming-game" id="<%= game.id %>"> 
+		<h3 class="opponents"><%= game.home_team.name %> VS <%= game.away_team.name %></h3>
+		<p class="game-time"><%= game.event_time %></p> 
+		<p>Available spots: <%= refs_remaining > 0 ? refs_remaining : 0 %></p> 
 	</div>
 
 <% end %>

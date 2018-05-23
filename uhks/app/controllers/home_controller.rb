@@ -3,6 +3,6 @@ class HomeController < ApplicationController
 
 	def index
 		@user_name = current_user.first_name
-		@user_games = UserGame.where(id: current_user.id)
+		@games = Game.where("event_time > ?", Time.now)
 	end
 end
