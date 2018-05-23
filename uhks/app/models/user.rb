@@ -5,6 +5,7 @@ class User < ApplicationRecord
 	has_many :absences
 	belongs_to :licence
 	belongs_to :city
-	has_one :user_game
+
+	has_many :user_games
 	has_many :games, through: :user_games
 end
