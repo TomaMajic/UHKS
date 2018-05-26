@@ -1,2 +1,12 @@
-<h1>Game#new</h1>
-<p>Find me in app/views/game/new.html.erb</p>
+<h2>Create new game</h2>
+
+<%= form_for :game, :url => game_create_path do |f| %>
+	City: <%= f.text_field :city %><br />
+	Minimal ref. licence : <%= f.text_field :min_licence %><br />
+	Home team : <%= f.text_field :home_team %><br />
+	Away team : <%= f.text_field :away_team %><br />
+	Time: <%= f.text_field :event_time %><br />
+	Ref. count: <%= f.text_field :min_refs %><br />
+
+	<%= f.submit %>
+<% end %>

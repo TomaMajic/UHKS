@@ -10,6 +10,6 @@
 	cursor: pointer;
 }
 
-.upcoming-game:active {
-	border-style: inset;
+.edit-game {
+	text-decoration: none;
 }

@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get 'licence/new'
 
-  get 'licence/create'
+  post 'licence/create'
 
   get 'licence/edit'
 
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'absence/new'
 
-  get 'absence/create'
+  post 'absence/create'
 
   get 'absence/edit'
 
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   get 'city/new'
 
-  get 'city/create'
+  post 'city/create'
 
   get 'city/edit'
 
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   get 'team/new'
 
-  get 'team/create'
+  post 'team/create'
 
   get 'team/edit'
 
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
 
   get 'user/new'
 
-  get 'user/create'
+  post 'user/create'
 
   get 'user/edit'
 
@@ -76,7 +76,7 @@ Rails.application.routes.draw do
 
   get 'game/new'
 
-  get 'game/create'
+  post 'game/create'
 
   get 'game/edit'
 
@@ -86,4 +86,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 	root to: "home#index"
+
+  get 'game/show-refs-for-game' => 'game#show_refs_for_game', as: 'show_refs_for_game'
+  get 'game/add-new-ref' => 'game#add_new_ref', as: 'add_new_ref'
+  get 'game/remove-ref' => 'game#remove_ref', as: 'remove_ref'
+  get 'game/edit-ref' => 'game#edit_ref', as: 'edit_ref'
+  get 'game/delete-game' => 'game#delete_game', as: 'delete_game'
 end

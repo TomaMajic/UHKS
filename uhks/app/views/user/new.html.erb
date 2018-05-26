@@ -1,2 +1,12 @@
-<h1>User#new</h1>
-<p>Find me in app/views/user/new.html.erb</p>
+<h2>Create new referee</h2>
+
+<%= form_for :user, :url => user_create_path do |f| %>
+	First name: <%= f.text_field :f_name %><br />
+	Last name: <%= f.text_field :l_name %><br />
+	Email : <%= f.text_field :email %><br />
+	Password : <%= f.text_field :password %><br />
+	City: <%= f.text_field :city %><br />
+	Licence : <%= f.text_field :licence %><br />
+
+	<%= f.submit %>
+<% end %>

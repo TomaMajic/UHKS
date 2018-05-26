@@ -13,9 +13,22 @@
   	<p class="alert"><%= alert %></p>
 
     <div class="topnav">
-      <a class="active" href="#home">Home</a>
-      <a>Odustnosti</a>
-      <a>Obavjesti</a>
+      <%= link_to "Home", :controller => "home" %>
+      <%= link_to game_new_path(), :class => "add-game" do %> 
+        <div class="new-game">New game</div>
+      <% end %>
+      <%= link_to user_new_path(), :class => "add-ref" do %> 
+        <div class="new-ref">New referee</div>
+      <% end %>
+      <%= link_to team_new_path(), :class => "add-team" do %> 
+        <div class="new-team">New team</div>
+      <% end %>
+      <%= link_to licence_new_path(), :class => "add-licence" do %> 
+        <div class="new-licence">New licence</div>
+      <% end %>
+      <%= link_to city_new_path(), :class => "add-city" do %> 
+        <div class="new-city">New city</div>
+      <% end %>
     </div>
     <%= yield %>
   </body>

@@ -1,0 +1,31 @@
+<h3>Referees: </h5>
+
+<% if @refs_remaining.to_i > 0 %>
+	<td>
+		Add new ref:
+		<input id="i<%= @game_id %>" placeholder="Enter the referees email">
+		<button class="add-ref" id="<%= @game_id %>">Add ref</button>
+	</td>
+<% end %>
+
+<table>
+	<tr>
+		<th>First name</th>
+		<th>Last name</th>
+		<th>Email</th>
+		<th>Licence</th>
+		<th>Edit</th>
+		<th>Remove</th>
+	</tr>
+
+	<% @referees.each do |ref| %>
+	 	<tr>
+			<td><%= ref.first_name %></td>
+			<td><%= ref.last_name %></td>
+			<td><%= ref.email %></td>
+			<td><%= ref.licence.name %></td>
+			<td><button class="edit-ref" id="e<%= @game_id %>">Edit</button></td>
+			<td><button class="remove-ref" id="rem<%= @game_id %>ref<%= ref.id %>">Remove</button></td>
+		</tr>
+	<% end %>
+</table>

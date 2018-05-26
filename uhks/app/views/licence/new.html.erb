@@ -1,2 +1,8 @@
-<h1>Licence#new</h1>
-<p>Find me in app/views/licence/new.html.erb</p>
+<h2>Create new licence</h2>
+
+<%= form_for :licence, :url => licence_create_path do |f| %>
+	Licence name: <%= f.text_field :name %><br />
+	Priority: <%= f.text_field :priority %><br />
+
+	<%= f.submit %>
+<% end %>

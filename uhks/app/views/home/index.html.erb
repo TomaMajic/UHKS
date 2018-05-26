@@ -4,11 +4,19 @@
 
 <% @games.each do |game| %>
 	<% refs_remaining = game.num_of_refs - game.users.count  %>
+	 
+	<div class="upcoming-game"> 
+		<div>
+			<button class="delete-game" id="del<%= game.id %>">Delete game</button>
+		</div>
 
-	<div class="upcoming-game" id="<%= game.id %>"> 
-		<h3 class="opponents"><%= game.home_team.name %> VS <%= game.away_team.name %></h3>
+		<h3 class="opponents" id="<%= game.id %>">
+			<%= game.home_team.name %> VS <%= game.away_team.name %>
+		</h3>
 		<p class="game-time"><%= game.event_time %></p> 
 		<p>Available spots: <%= refs_remaining > 0 ? refs_remaining : 0 %></p> 
+
+		<div class="referees" id="r<%= game.id %>" data-remaining="<%= refs_remaining %>"></div>
 	</div>
 
 <% end %>

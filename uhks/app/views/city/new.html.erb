@@ -1,2 +1,8 @@
-<h1>City#new</h1>
-<p>Find me in app/views/city/new.html.erb</p>
+<h2>Create new city</h2>
+
+<%= form_for :city, :url => city_create_path do |f| %>
+	City name: <%= f.text_field :name %><br />
+	Postal code: <%= f.text_field :code %><br />
+
+	<%= f.submit %>
+<% end %>
