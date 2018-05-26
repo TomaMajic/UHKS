@@ -4,15 +4,7 @@ class GameController < ApplicationController
         @game = Game.last
     end
 
-    def show
-    end
-
-    def new
-    end
-
     def create
-        # @current_last_id = Game.last.id
-
         @city = City.where(name: params[:game][:city]).first
         @licence = Licence.where(name: params[:game][:min_licence]).first
         @home_team = Team.where(name: params[:game][:home_team]).first
@@ -23,19 +15,12 @@ class GameController < ApplicationController
         game = Game.new(city_id: @city.id, minimal_licence_id: @licence.id, home_team_id: @home_team.id, away_team_id: @away_team.id, event_time: @event_time, num_of_refs: @num_refs)
 
         if game.save
-            redirect_to(game_index_url)
+            redirect_to(home_index_url)
         end
     end
 
     def edit
         @game = Game.find(params[:id])
-    end
-
-    def update
-    end
-
-    def destroy
-        redirect_to(game_index_url)
     end
 
     def show_refs_for_game
@@ -97,12 +82,21 @@ class GameController < ApplicationController
         render :json => { success: success}
     end
 
+    def edit_ref
+        success = false
 
+        ref = User.find(params[:id])
+        licence_id = Licence.where(name: params[:licence]).first.id
 
+        ref.email = params[:email]
+        ref.first_name = params[:f_name]
+        ref.last_name = params[:l_name]
+        ref.licence_id = licence_id
 
+        if ref.save
+            success = true
+        end
 
-
-
-
-
+        render :json => { success: success}
+    end
 end

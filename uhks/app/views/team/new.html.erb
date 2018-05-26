@@ -1,2 +1,8 @@
-<h1>Team#new</h1>
-<p>Find me in app/views/team/new.html.erb</p>
+<h2>Create new team</h2>
+
+<%= form_for :team, :url => team_create_path do |f| %>
+	Team name: <%= f.text_field :name %><br />
+	City: <%= f.text_field :city %><br />
+
+	<%= f.submit %>
+<% end %>

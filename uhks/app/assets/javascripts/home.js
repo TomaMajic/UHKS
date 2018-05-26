@@ -66,25 +66,37 @@ $(document).ready(() => {
 		});
 	});
 
-	// $(document).on('click', '.edit-ref', (e) => {
-	// 	let game_id = e.target.id;
-	// 	let input_id = '#i'+game_id;
-	// 	let ref_mail = $(input_id).val();
+	$(document).on('click', '.edit-ref', (e) => {
+		let ref_id = e.target.id;
 
-	// 	$.ajax({
-	// 		url: '/game/add-new-ref',
-	// 		data: {
-	// 			id : game_id,
-	// 			ref_mail: ref_mail
-	// 		},
-	// 		type: 'get',
-	// 		success: (data) => {
-	// 			if(data.success) {
-	// 				location.reload();
-	// 			}
-	// 		}
-	// 	});
-	// });
+		let f_name_input = '#fn'+ref_id;
+		let l_name_input = '#ln'+ref_id;
+		let email_input = '#e'+ref_id;
+		let licence_input = '#l'+ref_id;
+
+		let f_name = $(f_name_input).val();
+		let l_name = $(l_name_input).val();
+		let email = $(email_input).val();
+		let licence = $(licence_input).val();
+
+
+		$.ajax({
+			url: '/game/edit-ref',
+			data: {
+				id : ref_id,
+				email: email,
+				f_name: f_name,
+				l_name: l_name,
+				licence: licence
+			},
+			type: 'get',
+			success: (data) => {
+				if(data.success) {
+					location.reload();
+				}
+			}
+		});
+	});
 
 	$(document).on('click', '.delete-game', (e) => {
 		let game_id = e.target.id.slice(3);

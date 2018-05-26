@@ -20,11 +20,11 @@
 
 	<% @referees.each do |ref| %>
 	 	<tr>
-			<td><%= ref.first_name %></td>
-			<td><%= ref.last_name %></td>
-			<td><%= ref.email %></td>
-			<td><%= ref.licence.name %></td>
-			<td><button class="edit-ref" id="e<%= @game_id %>">Edit</button></td>
+			<td><input value="<%= ref.first_name %>" id="fn<%= ref.id %>"></td>
+			<td><input value="<%= ref.last_name %>" id="ln<%= ref.id %>"></td>
+			<td><input value="<%= ref.email %>" id="e<%= ref.id %>"></td>
+			<td><input value="<%= ref.licence.name %>" id="l<%= ref.id %>"></td>
+			<td><button class="edit-ref" id="<%= ref.id %>">Edit</button></td>
 			<td><button class="remove-ref" id="rem<%= @game_id %>ref<%= ref.id %>">Remove</button></td>
 		</tr>
 	<% end %>

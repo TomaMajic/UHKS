@@ -1,23 +1,13 @@
 class TeamController < ApplicationController
-  def index
-  end
-
-  def show
-  end
-
-  def new
-  end
 
   def create
+    @name = params[:team][:name]
+    @city_id = City.where(name: params[:team][:city]).first.id
 
-  end
+    team = Team.new(city_id: @city_id, name: @name)
 
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
+    if team.save
+        redirect_to(home_index_url)
+    end
   end
 end
